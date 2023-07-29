@@ -1,13 +1,17 @@
 import { useState } from "react";
 import shortid from "shortid";
-import Input from "./components/Input";
-import TodoList from "./components/TodoList";
+import GlobalStyle from "./GlobalStyle";
+import Header from "./components/header/Header";
+import TodoList from "./components/todoList/TodoList";
+import Input from "./components/input/Input";
+import * as S from "./StyleApp";
 
 // interface를 이용한 Todos 타입 정의
 export interface Todo {
   id: string;
   title: string;
   contents: string;
+  createdAt: string;
   isDone: boolean;
 }
 
@@ -15,54 +19,32 @@ const App = () => {
   const [todos, setTodos] = useState<Todo[]>([
     {
       id: shortid.generate(),
-      title: "액션가면 보기",
-      contents: "오후 4시 본방송 !",
+      title: "가로수길 애플 가기",
+      contents: "맥북 픽업해오기",
+      createdAt: "2023.07.27",
       isDone: true,
     },
     {
       id: shortid.generate(),
-      title: "이슬이누나랑 놀러가기",
-      contents: "어디 갈까 ?",
+      title: "에어팟 케이스 사기",
+      contents: "마음에 드는게 없어",
+      createdAt: "2023.07.31",
       isDone: false,
     },
   ]);
 
   return (
     <>
-      <header
-        style={{
-          // border: "1px solid black",
-          color: "#ffffff",
-          backgroundColor: "#000000",
-          padding: "10px",
-          margin: "10px",
-        }}
-      >
-        <h1>짱구의 투두리스트</h1>
-      </header>
+      <GlobalStyle />
+      <Header />
+      <S.ListContainer>
+        <S.ListWrapper>
+          <TodoList todos={todos} setTodos={setTodos} isDone={false} />
+          <S.ListLine />
+          <TodoList todos={todos} setTodos={setTodos} isDone={true} />
+        </S.ListWrapper>
+      </S.ListContainer>
       <Input todos={todos} setTodos={setTodos} />
-      <main
-        style={{
-          // border: "1px solid black",
-          backgroundColor: "#ff3721",
-          padding: "10px",
-          margin: "10px",
-        }}
-      >
-        <TodoList todos={todos} setTodos={setTodos} isDone={false} />
-        <TodoList todos={todos} setTodos={setTodos} isDone={true} />
-      </main>
-      <footer
-        style={{
-          // border: "1px solid black",
-          height: "100px",
-          backgroundColor: "#f2f53b",
-          padding: "10px",
-          margin: "10px",
-        }}
-      >
-        # 짱구혜진 # 윤빈나 컨셉 조언 #호랑이 선생님 명강의
-      </footer>
     </>
   );
 };
