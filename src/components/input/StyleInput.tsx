@@ -26,7 +26,15 @@ export const ModalContents = styled.form`
 
 export const ModalDate = styled.div`
   color: #ffffff;
+  text-decoration: r;
   margin-bottom: 20px;
+`;
+
+export const HeaderImg = styled.img`
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  height: 22px;
 `;
 
 export const ModalCloseBtn = styled.button`
