@@ -3,6 +3,7 @@ import shortid from "shortid";
 import { Todo } from "../../App";
 import * as S from "./StyleInput";
 import { ModalBtnBox, ModalBtn } from "../Button";
+import btn from "../../assets/btn.png";
 
 // interface를 이용한 InputProps 타입 정의
 interface InputProps {
@@ -63,6 +64,7 @@ const Input: React.FC<InputProps> = ({ todos, setTodos }) => {
         <S.ModalBox>
           <S.ModalContents onSubmit={handlerAddTodo}>
             <S.ModalDate>Today is {dateFormat}</S.ModalDate>
+            <S.HeaderImg src={btn} alt="이미지를 찾을 수 없습니다." />
             <S.ModalCloseBtn onClick={handlerOpenModal}>X</S.ModalCloseBtn>
             <S.ModalInput
               type="text"
